@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/dmiller1623/node-practice/issues"
   },
-  "homepage": "https://github.com/dmiller1623/node-practice#readme"
+  "homepage": "https://github.com/dmiller1623/node-practice#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
