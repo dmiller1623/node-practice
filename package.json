@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/dmiller1623/node-practice#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4"
   }
 }

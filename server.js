@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+
+app.use( bodyParser.json() );
 
 app.set('port', process.env.PORT || 3000);
 app.locals.people = [
@@ -9,15 +12,15 @@ app.locals.people = [
   {name: 'mikaela', age: 19, id: 4}
 ]
 
-app.get('/', (request, response) => {
+app.get('/api/v1/fam', (request, response) => {
   const family = app.locals.people
 
   return response.json(family)
 });
 
 app.post('/api/v1/fam', (request, response) => {
-  const newMember = response.body;
-  console.log(newMember)
+  // const newMember = response.body;
+  console.log(response.body)
   // const id = app.locals.people.length + 1
 
   // if(newMember) {
