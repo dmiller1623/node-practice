@@ -10,7 +10,9 @@ app.locals.people = [
 ]
 
 app.get('/', (request, response) => {
-  response.send('Oh hey Pet Box');
+  const family = app.locals.people
+
+  return response.json(family)
 });
 
 app.listen(app.get('port'), () => {
