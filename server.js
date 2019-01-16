@@ -18,16 +18,27 @@ app.get('/api/v1/fam', (request, response) => {
   return response.json(family)
 });
 
-app.post('/api/v1/fam', (request, response) => {
-  // const newMember = response.body;
-  console.log(response.body)
-  // const id = app.locals.people.length + 1
-
-  // if(newMember) {
-  //   app.locals.people.push({ newMember, id })
-  //   return response.status(201).json({ id, newMember })
-  // }
+app.get('/api/v1/fam/:id', (request, response) => {
+  const id = request.params.id;
+  console.log(id)
+  const foundMember = app.locals.people.find(member => {
+    console.log(member)
+    return member.id == id
+  })
+  
+  return response.json(foundMember)
 })
+
+// app.post('/api/v1/fam', (request, response) => {
+//   // const newMember = response.body;
+//   console.log(response.body)
+//   // const id = app.locals.people.length + 1
+
+//   // if(newMember) {
+//   //   app.locals.people.push({ newMember, id })
+//   //   return response.status(201).json({ id, newMember })
+//   // }
+// })
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
