@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 
 app.use( bodyParser.json() );
 
+app.use(express.static('public'))
+
 app.set('port', process.env.PORT || 3000);
 app.locals.people = [
   {name: 'dennis', age: 28, id: 1},
