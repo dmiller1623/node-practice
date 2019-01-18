@@ -1,5 +1,9 @@
 const express = require('express');
 const app = express();
+const environment = process.env.NODE_ENV || 'development';
+const configuration = require('./knexfile')[environment];
+const database = require('knex')(configuration);
+
 const bodyParser = require('body-parser');
 
 app.use( bodyParser.json() );
@@ -37,6 +41,15 @@ app.post('/api/v1/fam/', (request, response) => {
   fam.push({ newMember, id })
 
   return response.json(fam)
+})
+
+app.post('/api/v1/fam', (request, response) => {
+  const newMember = request.body;
+
+  database('members').insert(newMember, 'id')
+    .then(paper => {
+      response.status(201).json({ id: newMember[0] })
+    })
 })
 
 app.listen(app.get('port'), () => {
