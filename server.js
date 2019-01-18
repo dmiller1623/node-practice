@@ -43,6 +43,15 @@ app.post('/api/v1/fam/', (request, response) => {
   return response.json(fam)
 })
 
+app.post('/api/v1/fam', (request, response) => {
+  const newMember = request.body;
+
+  database('members').insert(newMember, 'id')
+    .then(paper => {
+      response.status(201).json({ id: newMember[0] })
+    })
+})
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
 });
