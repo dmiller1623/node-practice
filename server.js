@@ -38,7 +38,16 @@ app.post('/api/v1/fam', (request, response) => {
 })
 
 app.delete('/api/v1/fam/:id', (request, response) => {
+  const id = request.params.id;
   
+  database('members').where(id, id).delete()
+    .then(member => {
+      response.status(202).json({ id })
+    })
+
+    .catch(error => {
+      resonse.status(500).json({ error })
+    })
 })
 
 app.listen(app.get('port'), () => {
