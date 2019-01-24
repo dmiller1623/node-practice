@@ -13,7 +13,14 @@ app.use(express.static('public'))
 app.set('port', process.env.PORT || 3000);
 
 app.get('/api/v1/fam', (request, response) => {
-  
+  database('members').select()
+    .then((members) => {
+      response.status(200).json(members)
+    })
+
+    .catch((error) => {
+      response.status(500).json({ error })
+    })
 });
 
 app.get('/api/v1/fam/:id', (request, response) => {
