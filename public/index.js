@@ -2,6 +2,16 @@ const addMemberButton = document.querySelector('.add-member')
 const ageInput = document.querySelector('.age-input')
 const nameInput = document.querySelector('.name-input')
 
+let family = []
+
+
+const getAllMembers = async () => {
+  const response = await fetch('/api/v1/fam');
+  const familyMembers = await response.json();
+  family = familyMembers
+  console.log(family)
+}
+
 const addMember = async (event) => {
   event.preventDefault()
   let newMember = {
@@ -24,5 +34,6 @@ const addMember = async (event) => {
   }
 }
 
+getAllMembers();
 
 addMemberButton.addEventListener('click', addMember)
