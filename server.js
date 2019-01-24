@@ -13,9 +13,7 @@ app.use(express.static('public'))
 app.set('port', process.env.PORT || 3000);
 
 app.get('/api/v1/fam', (request, response) => {
-  const family = app.locals.people
-
-  return response.json(family)
+  
 });
 
 app.get('/api/v1/fam/:id', (request, response) => {
