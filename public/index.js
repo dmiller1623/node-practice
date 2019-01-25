@@ -16,7 +16,7 @@ const getAllMembers = async () => {
 const displayMembers = () => {
   let familySection = $('.family')
   family.forEach((member, index) => {
-    familySection.append(`<h1>${member.name}</h1 class='delete-button'><button>delete</button>`)
+    familySection.append(`<h1 id=${member.id}>${member.name}</h1><button class='delete-button'>delete</button>`)
   })
 }
 
@@ -41,9 +41,8 @@ const addMember = async (event) => {
 }
 
 const deleteMember = (event) => {
-  console.log(event)
   if(event.target.className === 'delete-button') {
-    console.log('hey')
+    let memberId = event.target.previousSibling.id;
   }
 }
 
