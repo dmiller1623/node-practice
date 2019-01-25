@@ -40,9 +40,17 @@ const addMember = async (event) => {
   }
 }
 
-const deleteMember = (event) => {
+const deleteMember = async (event) => {
   if(event.target.className === 'delete-button') {
     let memberId = event.target.previousSibling.id;
+
+    try {
+      await fetch(`/api/v1/fam/${memberId}`, {
+        method: 'DELETE'
+      })
+    } catch (error) {
+      throw new Error(error.message)
+    }
   }
 }
 
