@@ -16,7 +16,7 @@ const getAllMembers = async () => {
 const displayMembers = () => {
   let familySection = $('.family')
   family.forEach((member, index) => {
-    familySection.append(`<h1 id=${member.id}>${member.name}</h1><button class='delete-button'>delete</button>`)
+    familySection.append(`<h1 id=${member.id}>${member.name}</h1><h1>Age ${member.age}</h1></h1><button class='delete-button'>delete</button>`)
   })
 }
 
