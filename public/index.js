@@ -1,6 +1,7 @@
-const addMemberButton = document.querySelector('.add-member')
-const ageInput = document.querySelector('.age-input')
-const nameInput = document.querySelector('.name-input')
+// const addMemberButton = document.querySelector('.add-member')
+// const ageInput = document.querySelector('.age-input')
+// const nameInput = document.querySelector('.name-input')
+
 
 let family = []
 
@@ -13,10 +14,9 @@ const getAllMembers = async () => {
 }
 
 const displayMembers = () => {
-  const familySection = $('.family')
+  let familySection = $('.family')
   family.forEach((member, index) => {
-    console.log(member)
-    familySection.append(`<h1>${member.name}</h1>`)
+    familySection.append(`<h1 id=${member.id}>${member.name}</h1><button class='delete-button'>delete</button>`)
   })
 }
 
@@ -40,6 +40,22 @@ const addMember = async (event) => {
   }
 }
 
+const deleteMember = async (event) => {
+  if(event.target.className === 'delete-button') {
+    let memberId = event.target.previousSibling.id;
+
+    try {
+      await fetch(`/api/v1/fam/${memberId}`, {
+        method: 'DELETE'
+      })
+    } catch (error) {
+      throw new Error(error.message)
+    }
+  }
+}
+
 getAllMembers();
 
-addMemberButton.addEventListener('click', addMember)
+$('.add-member').on('click', addMember)
+$('.family').on('click', deleteMember)
+// addMemberButton.addEventListener('click', addMember)
