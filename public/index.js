@@ -16,7 +16,7 @@ const displayMembers = () => {
   const familySection = $('.family')
   family.forEach((member, index) => {
     console.log(member)
-    familySection.append(`<h1>${member.name}</h1>`)
+    familySection.append(`<h1>${member.name}</h1><button>delete</button>`)
   })
 }
 
