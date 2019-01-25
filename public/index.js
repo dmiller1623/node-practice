@@ -1,6 +1,7 @@
-const addMemberButton = document.querySelector('.add-member')
-const ageInput = document.querySelector('.age-input')
-const nameInput = document.querySelector('.name-input')
+// const addMemberButton = document.querySelector('.add-member')
+// const ageInput = document.querySelector('.age-input')
+// const nameInput = document.querySelector('.name-input')
+
 
 let family = []
 
@@ -13,10 +14,9 @@ const getAllMembers = async () => {
 }
 
 const displayMembers = () => {
-  const familySection = $('.family')
+  let familySection = $('.family')
   family.forEach((member, index) => {
-    console.log(member)
-    familySection.append(`<h1>${member.name}</h1><button>delete</button>`)
+    familySection.append(`<h1>${member.name}</h1 class='delete-button'><button>delete</button>`)
   })
 }
 
@@ -40,6 +40,15 @@ const addMember = async (event) => {
   }
 }
 
+const deleteMember = (event) => {
+  console.log(event)
+  if(event.target.className === 'delete-button') {
+    console.log('hey')
+  }
+}
+
 getAllMembers();
 
-addMemberButton.addEventListener('click', addMember)
+$('.add-member').on('click', addMember)
+$('.family').on('click', deleteMember)
+// addMemberButton.addEventListener('click', addMember)
