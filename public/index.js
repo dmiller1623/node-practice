@@ -16,16 +16,20 @@ const getAllMembers = async () => {
 const displayMembers = () => {
   let familySection = $('.family')
   family.forEach((member, index) => {
-    familySection.append(`<h1 id=${member.id}>${member.name}</h1><h1>Age ${member.age}</h1></h1><button class='delete-button'>delete</button>`)
+    familySection.append(`<h1>Age ${member.age}</h1><h1 id=${member.id}>${member.name}</h1></h1><button class='delete-button'>delete</button>`)
   })
 }
 
 const addMember = async (event) => {
   event.preventDefault()
-  let newMember = {
-    name: nameInput.value,
-    age: parseInt(ageInput.value)
+  let name = $('.name-input').val();
+  let age = $('.age-input').val();
+    let newMember = {
+    name,
+    age
   }
+
+  console.log(newMember)
   try {
     const response = await fetch('/api/v1/fam', {
       method: 'POST',
