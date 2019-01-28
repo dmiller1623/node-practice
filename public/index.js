@@ -1,10 +1,4 @@
-// const addMemberButton = document.querySelector('.add-member')
-// const ageInput = document.querySelector('.age-input')
-// const nameInput = document.querySelector('.name-input')
-
-
 let family = []
-
 
 const getAllMembers = async () => {
   const response = await fetch('/api/v1/fam');
@@ -29,7 +23,6 @@ const addMember = async (event) => {
     age
   }
 
-  console.log(newMember)
   try {
     const response = await fetch('/api/v1/fam', {
       method: 'POST',
@@ -38,7 +31,7 @@ const addMember = async (event) => {
       },
       body: JSON.stringify(newMember)
     })
-    return await response.json()
+    getAllMembers()
   } catch (error) {
     throw new Error(error.message)
   }
@@ -55,6 +48,7 @@ const deleteMember = async (event) => {
     } catch (error) {
       throw new Error(error.message)
     }
+    getAllMembers();
   }
 }
 
@@ -62,4 +56,3 @@ getAllMembers();
 
 $('.add-member').on('click', addMember)
 $('.family').on('click', deleteMember)
-// addMemberButton.addEventListener('click', addMember)
