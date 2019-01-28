@@ -1,10 +1,4 @@
-// const addMemberButton = document.querySelector('.add-member')
-// const ageInput = document.querySelector('.age-input')
-// const nameInput = document.querySelector('.name-input')
-
-
 let family = []
-
 
 const getAllMembers = async () => {
   const response = await fetch('/api/v1/fam');
@@ -16,16 +10,19 @@ const getAllMembers = async () => {
 const displayMembers = () => {
   let familySection = $('.family')
   family.forEach((member, index) => {
-    familySection.append(`<h1 id=${member.id}>${member.name}</h1><button class='delete-button'>delete</button>`)
+    familySection.append(`<h1>Age ${member.age}</h1><h1 id=${member.id}>${member.name}</h1></h1><button class='delete-button'>delete</button>`)
   })
 }
 
 const addMember = async (event) => {
   event.preventDefault()
-  let newMember = {
-    name: nameInput.value,
-    age: parseInt(ageInput.value)
+  let name = $('.name-input').val();
+  let age = $('.age-input').val();
+    let newMember = {
+    name,
+    age
   }
+
   try {
     const response = await fetch('/api/v1/fam', {
       method: 'POST',
@@ -34,7 +31,7 @@ const addMember = async (event) => {
       },
       body: JSON.stringify(newMember)
     })
-    return await response.json()
+    getAllMembers()
   } catch (error) {
     throw new Error(error.message)
   }
@@ -51,6 +48,7 @@ const deleteMember = async (event) => {
     } catch (error) {
       throw new Error(error.message)
     }
+    getAllMembers();
   }
 }
 
@@ -58,4 +56,3 @@ getAllMembers();
 
 $('.add-member').on('click', addMember)
 $('.family').on('click', deleteMember)
-// addMemberButton.addEventListener('click', addMember)
